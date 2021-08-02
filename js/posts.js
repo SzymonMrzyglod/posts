@@ -1,30 +1,30 @@
 const posts = document.querySelector('.posts');
 
 
-const showComments = (json) => {
-    console.log(json)
+const showComments = (json, id) => {
     const postsWithDataId = [...document.querySelectorAll('[data-id]')];
-    //WYMYŚLIĆ JAK DODAĆ POBRANE KOMENTARZE POD POSTEM
     json.forEach(element => {
-        console.log(element.postId);
-
         const divComment = document.createElement('div');
         const divCommentTitle = document.createElement('div');
         const divCommentBody = document.createElement('div');
+        const btnEditComment = document.createElement('button');
 
         divComment.classList.add('comment');
         divCommentTitle.classList.add('comment-title');
         divCommentBody.classList.add('comment-body');
+        btnEditComment.classList.add('comment-btn-edit');
 
         divCommentTitle.innerHTML = `<h2>${element.name}</h2>`;
         divCommentBody.innerHTML = `<p>${element.body}</p>`;
+        btnEditComment.innerHTML = `<p>edit</p>`;
 
-        posts.appendChild(divComment);
+        postsWithDataId[id - 1].appendChild(divComment);
         divComment.appendChild(divCommentTitle);
         divComment.appendChild(divCommentBody);
+        divComment.appendChild(btnEditComment);
     });
-
 }
+
 const showPosts = (json) => {
     json.forEach(element => {
         const divPost = document.createElement('div');
@@ -48,20 +48,20 @@ const showPosts = (json) => {
         divPost.appendChild(divPostTitle);
         divPost.appendChild(divPostBody);
         divPost.appendChild(btnShowComments);
-    
+
         btnShowComments.addEventListener('click', () => {
             const btnDataId = btnShowComments.parentNode.getAttribute('data-id');
-            getCommentsFromApi(`posts/${btnDataId}/comments`);
-        })     
+            getCommentsFromApi(`posts/${btnDataId}/comments`, btnDataId);
+        })
     });
 };
 
-const getCommentsFromApi = (option) => {
+const getCommentsFromApi = (option, id) => {
     url = `https://jsonplaceholder.typicode.com/${option}`;
 
     fetch(url)
         .then(response => response.json())
-        .then(json => showComments(json));
+        .then(json => showComments(json, id));
 }
 
 const getPostsFromApi = (option) => {
