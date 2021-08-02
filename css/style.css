@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px;
+}
+
+.posts {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-self: space-between;
+    max-width: 1200px;
+}
+
+.post {
+    display: contents;
+    align-self: space-between;
+    flex-direction: column;
+}
+
+.post-title {
+    width: 70%;
+    font-size: 2rem;
+    align-self: center;
+    text-transform: uppercase;
+    padding: 20px;
+}
+
+.post-body {
+    font-size: 1.6rem;
+    width: 70%;
+    font-size: 2rem;
+    align-self: center;
+}
+
+.post-btn-show-comments {
+    width: 30%;
+}
+
+.post-btn-add-comments {
+    width: 30%;
+}
