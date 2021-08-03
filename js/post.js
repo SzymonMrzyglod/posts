@@ -42,6 +42,7 @@ class Post {
             body,
         });
         this.saveCommentsToLocalStorage(id);
+        createCommentElement(id);
     };
     savePostsToLocalStorage() {
         localStorage.setItem('post-items', JSON.stringify(this.postsArray));

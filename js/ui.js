@@ -50,7 +50,6 @@ const addBtnEvent = (btnAddComments, btnShowComments, divComments) => {
         addCommentApi(`posts/${btnDataId}/comments`, btnDataId);
         commentsArrayLength.length = 0;
         divComments.innerHTML = "";
-        createCommentElement(btnDataId);
     })
 }
 
