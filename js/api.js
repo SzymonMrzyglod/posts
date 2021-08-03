@@ -1,6 +1,6 @@
-const addComment = (option, id) => {
-    url =
-        fetch(`https://jsonplaceholder.typicode.com/${option}`, {
+const addCommentApi = (option, id) => {
+    url = `https://jsonplaceholder.typicode.com/${option}`
+    fetch(url, {
             method: 'POST',
             body: JSON.stringify({
                 //DODAĆ WPROWADZANIE DANYCH W JAKIMŚ FORMULARZU
@@ -13,7 +13,7 @@ const addComment = (option, id) => {
             },
         })
         .then((response) => response.json())
-        .then((json) => addCommentElement(json, id));
+        .then((json) => newPost.addNewComment(json.postId, json.id, json.title, json.body, id));
 }
 
 
@@ -25,4 +25,4 @@ const getFromApi = (option, id) => {
         .then(json => addPost(json, id));
 }
 
-getFromApi('posts');
+

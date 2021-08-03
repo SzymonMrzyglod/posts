@@ -18,7 +18,6 @@ const addCommentToElement = (divComment, divCommentTitle, divCommentBody, btnEdi
 const createCommentElement = (id) => {
     const commentsFromCommentsArray = newPost.getCommentFromCommentsArray(id);
     console.log(commentsFromCommentsArray)
-
     commentsFromCommentsArray.forEach(comment => {
         const divComment = document.createElement('div');
         const divCommentName = document.createElement('div');
@@ -36,11 +35,22 @@ const createCommentElement = (id) => {
 }
 
 const addBtnEvent = (btnAddComments, btnShowComments, divComments) => {
+    const btnDataId = btnShowComments.parentNode.getAttribute('data-id');
+    const commentsArrayLength = newPost.commentsArray[Number(btnDataId - 1)].length;
     btnShowComments.addEventListener('click', () => {
-        const btnDataId = btnShowComments.parentNode.getAttribute('data-id');
-        newPost.commentsArray[btnDataId - 1].length = 0;
+        if (commentsArrayLength === 0) {
+            getFromApi(`posts/${btnDataId}/comments`, btnDataId);
+        } else {
+            commentsArrayLength.length = 0;
+            divComments.innerHTML = "";
+            createCommentElement(btnDataId)
+        }
+    })
+    btnAddComments.addEventListener('click', () => {
+        addCommentApi(`posts/${btnDataId}/comments`, btnDataId);
+        commentsArrayLength.length = 0;
         divComments.innerHTML = "";
-        getFromApi(`posts/${btnDataId}/comments`, btnDataId);
+        createCommentElement(btnDataId);
     })
 }
 
@@ -60,6 +70,7 @@ const addDataToElement = (divPost, divPostTitle, divPostBody, btnShowComments, b
 
 const createPostElement = () => {
     const posts = newPost.getPostFromPostsArray();
+    console.log(posts)
     posts.forEach((post, index) => {
         const divPost = document.createElement('div');
         const divPostTitle = document.createElement('div');
@@ -94,3 +105,9 @@ const addPost = (json, id) => {
 
     id === undefined ? createPostElement() : createCommentElement(id);
 };
+
+if (newPost.postsArray.length === 0) {
+    getFromApi('posts');
+} else {
+    createPostElement();
+}
