@@ -1,5 +1,14 @@
 const posts = document.querySelector('.posts');
 
+const createCommentForm = () => {
+    console.log('działa');
+    // const formComment = document.createElement('form');
+    // formComment.innerHTML = `<textarea type="text" name="comment" id="comment" placeholder="Enter comment"></textarea>`
+    //  formComment.classList.add('comment-form')
+    // formComment.appendChild(btnAddComments);
+    // divComments.appendChild(formComment);
+}
+
 const addCommentToElement = (divComment, divCommentTitle, divCommentBody, btnEditComment, comment, id, postId) => {
 
     const postsWithDataId = [...document.querySelectorAll('[data-id]')];
@@ -31,7 +40,6 @@ const createCommentElement = (id) => {
 
         addCommentToElement(divComment, divCommentName, divCommentBody, btnEditComment, comment, id, comment.postId)
     })
-
 }
 
 const addBtnEvent = (btnAddComments, btnShowComments, divComments) => {
@@ -53,18 +61,19 @@ const addBtnEvent = (btnAddComments, btnShowComments, divComments) => {
     })
 }
 
-const addDataToElement = (divPost, divPostTitle, divPostBody, btnShowComments, btnAddComments, divComments, post) => {
+const addDataToElement = (divPost, divPostTitle, divPostBody, btnShowComments, btnAddComments, divComments, post, formComment) => {
     divPostTitle.innerHTML = `<h2>${post.title}</h2>`;
     divPostBody.innerHTML = `<p>${post.body}</p>`;
     btnShowComments.innerHTML = `<p>show comments</p>`;
     btnAddComments.innerHTML = `<p>add comments</p>`;
 
+
     posts.appendChild(divPost);
     divPost.appendChild(divPostTitle);
     divPost.appendChild(divPostBody);
     divPost.appendChild(btnShowComments);
-    divPost.appendChild(btnAddComments);
     divPost.appendChild(divComments);
+
 }
 
 const createPostElement = () => {
@@ -75,21 +84,24 @@ const createPostElement = () => {
         const divPostTitle = document.createElement('div');
         const divPostBody = document.createElement('div');
         const btnShowComments = document.createElement('button');
-        const btnAddComments = document.createElement('button');
         const divComments = document.createElement('div');
+        const btnAddComments = document.createElement('button');
+        createCommentForm();
 
         divPost.classList.add('post');
         divPostTitle.classList.add('post-title');
         divPostBody.classList.add('post-body');
         btnShowComments.classList.add('post-btn-show-comments');
-        btnAddComments.classList.add('post-btn-add-comments');
         divComments.classList.add('comments');
+        btnAddComments.classList.add('post-btn-add-comments');
+
 
         divPost.setAttribute('data-id', index + 1)
 
         addDataToElement(divPost, divPostTitle, divPostBody, btnShowComments, btnAddComments, divComments, post);
         addBtnEvent(btnAddComments, btnShowComments, divComments)
     })
+
 }
 
 const addPost = (json, id) => {
