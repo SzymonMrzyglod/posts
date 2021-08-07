@@ -9,18 +9,19 @@ html {
     font-size: 10px;
 }
 
+/* -----POSTS----- */
 .posts {
     display: flex;
-    text-align: center;
+    text-align: justify;
     flex-direction: column;
     align-self: space-between;
-    max-width: 1200px;
+    /* max-width: 1200px; */
 }
 
 .post {
-    display: contents;
-    align-self: space-between;
+    display: flex;
     flex-direction: column;
+    align-self: space-between;
 }
 
 .post-title {
@@ -38,10 +39,18 @@ html {
     align-self: center;
 }
 
-.post-btn-show-comments {
-    width: 30%;
+/* -----COMMENTS----- */
+.comments{
+    font-size: 1.6rem;
+    padding: 20px;
+    border: 2px solid #222;
 }
-
+.comment{
+    text-align: justify;
+    margin-left: 50px;
+    padding: 5px;
+    
+}
 .post-btn-add-comments {
     width: 30%;
 }

@@ -15,15 +15,15 @@ class Post {
         this.savePostsToLocalStorage();
     };
     addToCommentsArray(postId, commentId, name, email, body, id) {
-        console.log(id)
-        this.commentsArray[id - 1].push({
+        console.log(postId)
+        this.commentsArray[postId - 1].push({
             postId,
             commentId,
             name,
             body,
             email,
         });
-        this.saveCommentsToLocalStorage(id);
+        this.saveCommentsToLocalStorage(postId-1);
     };
     getPostFromPostsArray() {
         return this.postsArray;
@@ -34,16 +34,16 @@ class Post {
     cleanCommentArray() {
         this.commentsArray.length = 0;
     }
-    addNewComment(postId, commentId, name, body, id) {
-        this.commentsArray[id - 1].push({
-            postId,
-            commentId,
-            name,
-            body,
-        });
-        this.saveCommentsToLocalStorage(id);
-        createCommentElement(id);
-    };
+    // addNewComment(postId, commentId, name, body, id, divComments) {
+    //     this.commentsArray[id - 1].push({
+    //         postId,
+    //         commentId,
+    //         name,
+    //         body,
+    //     });
+    //     this.saveCommentsToLocalStorage(id);
+    //     createCommentElement(id, divComments);
+    // };
     savePostsToLocalStorage() {
         localStorage.setItem('post-items', JSON.stringify(this.postsArray));
     }
@@ -57,4 +57,3 @@ class Post {
         return JSON.parse(localStorage.getItem("comment-items"));
     }
 };
-const newPost = new Post();
