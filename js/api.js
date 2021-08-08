@@ -1,10 +1,9 @@
-const addCommentApi = (option, postId, name, comment, commentsToClean) => {
+const addCommentApi = (option, postId, comment, commentsToClean) => {
     url = `https://jsonplaceholder.typicode.com/${option}`
     fetch(url, {
             method: "post",
             body: JSON.stringify({
                 postId: postId,
-                name: name,
                 body: comment,
             }),
             headers: {
@@ -12,11 +11,9 @@ const addCommentApi = (option, postId, name, comment, commentsToClean) => {
             },
         })
         .then(response => response.json())
-        .then(json => newPost.addToCommentsArray(json.postId, json.id, json.name, json.email, json.body))
-
+        .then(json => newPost.addToCommentsArray(json.postId, json.id, json.body))
         .finally(() => {
             createCommentElement(postId, commentsToClean);
-            addNewCommentElement();
         })
 }
 
@@ -36,3 +33,4 @@ const getRandomDogImg = (postTitleUi) => {
         .then(response => response.json())
         .then(json => dogPostImg(json.message, postTitleUi));
 }
+

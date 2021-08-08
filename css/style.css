@@ -25,7 +25,7 @@ html {
     width: 100%;
     flex-direction: column;
     align-self: center;
-    border: 2px solid #555;
+    border: 2px solid #888;
     border-radius: 10px;
     background-color: #eee;
     margin: 10px;
@@ -34,6 +34,7 @@ html {
 .post-title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     width: 100%;
     text-align: start;
@@ -46,19 +47,13 @@ html {
 .post-title h2 {
     order: 1;
     width: 75%;
+    text-align: center;
 }
 
 .post-title-img {
     border-radius: 10px;
     order: 0;
     width: 20%;
-
-}
-
-.post-title-img img {
-
-    max-width: 100%;
-    height: auto;
 }
 
 .post-title-button {
@@ -66,17 +61,10 @@ html {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    background: tomato;
-    border: 0;
-    border-radius: 0.2rem;
-    color: #FFF;
-    font-size: 1.4rem;
-    transition: .3s;
 }
 
-.post-title-button:hover {
+.post-title-button:hover,
+.form .comment-add-btn:hover {
     transform: scale(.95);
 }
 
@@ -89,12 +77,15 @@ html {
     align-self: center;
 }
 
+.post-body::first-letter {
+    text-transform: uppercase;
+}
+
 /* -----COMMENTS----- */
 .comments {
     display: none;
     font-size: 1.6rem;
     padding: 20px;
-    margin-top: -40px;
 }
 
 .comment {
@@ -150,7 +141,8 @@ html {
     margin-bottom: 0.5rem;
 }
 
-.form .comment-add-btn {
+.form .comment-add-btn,
+.post-title-button {
     padding: 1rem 2rem;
     cursor: pointer;
     background: tomato;
@@ -158,6 +150,7 @@ html {
     border-radius: 0.2rem;
     color: #FFF;
     font-size: 1.4rem;
+    transition: .3s;
 }
 
 @media(max-width: 800px) {
