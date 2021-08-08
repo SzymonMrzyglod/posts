@@ -34,16 +34,6 @@ class Post {
     cleanCommentArray() {
         this.commentsArray.length = 0;
     }
-    // addNewComment(postId, commentId, name, body, id, divComments) {
-    //     this.commentsArray[id - 1].push({
-    //         postId,
-    //         commentId,
-    //         name,
-    //         body,
-    //     });
-    //     this.saveCommentsToLocalStorage(id);
-    //     createCommentElement(id, divComments);
-    // };
     savePostsToLocalStorage() {
         localStorage.setItem('post-items', JSON.stringify(this.postsArray));
     }
